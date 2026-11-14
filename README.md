@@ -9,7 +9,7 @@ A Java 21 static code analysis tool that scans Java source files, detects code q
 | Name | Roll No. | Assigned Module |
 | :--- | :--- | :--- |
 | Badal Kumar | 2025UIT3109 | Project Architecture, Maven Setup & File Scanner |
-| Member 2 | Roll No. | Static Analysis Rules Engine & Issue Scoring |
+| Harish | 2025UIT3088 | Static Analysis Rules Engine & Issue Scoring |
 | Member 3 | Roll No. | Health Score Calculation & Report Generation |
 | Member 4 | Roll No. | CLI / Web Interface, JUnit 5 Testing & Docs |
 
