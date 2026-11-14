@@ -13,6 +13,9 @@ A Java 21 static code analysis tool that scans Java source files, detects code q
 | Vikas | 2025UIT3093 | Health Score Calculation & Report Generation |
 | Member 4 | Roll No. | CLI / Web Interface, JUnit 5 Testing & Docs |
 
+## Screenshot
+![CodeReview Buddy Dashboard](image.png)
+
 ## Key Features
 - Recursively scans Java source directories (`java.nio.file`) and analyzes class/method AST structures
 - Detects code smells, naming violations, high method complexity, and resource leaks
