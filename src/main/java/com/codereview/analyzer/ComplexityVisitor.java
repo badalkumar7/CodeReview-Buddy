@@ -1,34 +1,96 @@
 package com.codereview.analyzer;
+
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.CallableDeclaration;
-import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.ConstructorDeclaration;
+import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.BinaryExpr;
-import com.github.javaparser.ast.stmt.*;
+import com.github.javaparser.ast.expr.ConditionalExpr;
+import com.github.javaparser.ast.stmt.CatchClause;
+import com.github.javaparser.ast.stmt.DoStmt;
+import com.github.javaparser.ast.stmt.ForEachStmt;
+import com.github.javaparser.ast.stmt.ForStmt;
+import com.github.javaparser.ast.stmt.IfStmt;
+import com.github.javaparser.ast.stmt.SwitchEntry;
+import com.github.javaparser.ast.stmt.WhileStmt;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+
 /** Computes method cyclomatic complexity from JavaParser syntax nodes. */
 public class ComplexityVisitor extends VoidVisitorAdapter<Void> {
-    private int complexity=1;
+    private int complexity = 1;
+
     /** Calculates complexity for a method or constructor declaration. */
-    public static int calculate(CallableDeclaration<?> method){ComplexityVisitor v=new ComplexityVisitor();if(method instanceof MethodDeclaration m)m.getBody().ifPresent(b->b.accept(v,null));else if(method instanceof ConstructorDeclaration c)c.getBody().accept(v,null);return v.complexity;}
+    public static int calculate(CallableDeclaration<?> callable) {
+        ComplexityVisitor visitor = new ComplexityVisitor();
+        if (callable instanceof MethodDeclaration method) {
+            method.getBody().ifPresent(body -> body.accept(visitor, null));
+        } else if (callable instanceof ConstructorDeclaration constructor) {
+            constructor.getBody().accept(visitor, null);
+        }
+        return visitor.complexity;
+    }
+
     /** Calculates complexity for an arbitrary method body node. */
-    public static int calculate(Node body){ComplexityVisitor v=new ComplexityVisitor();body.accept(v,null);return v.complexity;}
-    /** Counts an {@code if} branch and visits its nested expressions and statements. */
-    @Override public void visit(IfStmt n,Void a){complexity++;super.visit(n,a);}
-    /** Counts a {@code for} loop. */
-    @Override public void visit(ForStmt n,Void a){complexity++;super.visit(n,a);}
-    /** Counts an enhanced {@code for} loop. */
-    @Override public void visit(ForEachStmt n,Void a){complexity++;super.visit(n,a);}
-    /** Counts a {@code while} loop. */
-    @Override public void visit(WhileStmt n,Void a){complexity++;super.visit(n,a);}
-    /** Counts a {@code do-while} loop. */
-    @Override public void visit(DoStmt n,Void a){complexity++;super.visit(n,a);}
-    /** Counts a switch entry. */
-    @Override public void visit(SwitchEntry n,Void a){complexity++;super.visit(n,a);}
-    /** Counts an exception handler. */
-    @Override public void visit(CatchClause n,Void a){complexity++;super.visit(n,a);}
-    /** Counts each short-circuit boolean operator. */
-    @Override public void visit(BinaryExpr n,Void a){if(n.getOperator()==BinaryExpr.Operator.AND||n.getOperator()==BinaryExpr.Operator.OR)complexity++;super.visit(n,a);}
-    /** Counts a ternary conditional expression. */
-    @Override public void visit(com.github.javaparser.ast.expr.ConditionalExpr n,Void a){complexity++;super.visit(n,a);}
+    public static int calculate(Node body) {
+        ComplexityVisitor visitor = new ComplexityVisitor();
+        body.accept(visitor, null);
+        return visitor.complexity;
+    }
+
+    @Override
+    public void visit(IfStmt statement, Void argument) {
+        complexity++;
+        super.visit(statement, argument);
+    }
+
+    @Override
+    public void visit(ForStmt statement, Void argument) {
+        complexity++;
+        super.visit(statement, argument);
+    }
+
+    @Override
+    public void visit(ForEachStmt statement, Void argument) {
+        complexity++;
+        super.visit(statement, argument);
+    }
+
+    @Override
+    public void visit(WhileStmt statement, Void argument) {
+        complexity++;
+        super.visit(statement, argument);
+    }
+
+    @Override
+    public void visit(DoStmt statement, Void argument) {
+        complexity++;
+        super.visit(statement, argument);
+    }
+
+    @Override
+    public void visit(SwitchEntry entry, Void argument) {
+        complexity++;
+        super.visit(entry, argument);
+    }
+
+    @Override
+    public void visit(CatchClause clause, Void argument) {
+        complexity++;
+        super.visit(clause, argument);
+    }
+
+    @Override
+    public void visit(BinaryExpr expression, Void argument) {
+        if (expression.getOperator() == BinaryExpr.Operator.AND
+                || expression.getOperator() == BinaryExpr.Operator.OR) {
+            complexity++;
+        }
+        super.visit(expression, argument);
+    }
+
+    @Override
+    public void visit(ConditionalExpr expression, Void argument) {
+        complexity++;
+        super.visit(expression, argument);
+    }
 }

@@ -2,7 +2,3 @@ tools/
 .m2/
 target/
 *.zip
-*.class
-*.pdf
-.vscode/
-.DS_Store
