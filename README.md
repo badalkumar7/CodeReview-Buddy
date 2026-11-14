@@ -1,91 +1,33 @@
-# CodeReview Buddy 🔍☕
+# CodeReview Buddy
 
-**CodeReview Buddy** is an offline, desktop-based **Java Static Code & Complexity Analyzer** built with **Java 21**, **JavaParser**, **JavaFX**, and **OpenPDF**. It parses Java source files (`.java`) directly into Abstract Syntax Trees (AST) without compiling or executing target codebases—detecting structural code smells, calculating complexity metrics, computing a Repository Health Score, and generating downloadable PDF audit reports.
+**Institution:** Netaji Subhas University of Technology  
+**Subject:** Advance Programming (`ITITC304`)  
 
----
+A Java 21 static code analysis tool that scans Java source files, detects code quality issues, computes a project health score, and generates structured review reports.
 
-## ✨ Key Features
-
-- **Offline AST Parsing Engine:** Recursively scans arbitrary Java project folders without needing external compilers or network access.
-- **Automated Code Smell Detection:**
-  - **Cyclomatic Complexity (`HIGH`):** Flags methods exceeding McCabe Cyclomatic Complexity thresholds (`> 10`).
-  - **Excessive Nesting Depth (`HIGH`):** Detects deeply nested conditional and loop blocks (`> 3`).
-  - **Long Method (`MEDIUM`):** Identifies oversized methods (`> 30` lines) that need decomposition.
-  - **Unused Imports (`LOW`):** Catches unreferenced `import` statements to keep source files clean.
-- **Interactive JavaFX Analytics Dashboard:**
-  - Real-time KPI summary cards (**Health Score**, **Files Scanned**, **Avg Complexity**, **Total Issues**).
-  - Severity distribution pie chart (`HIGH`, `MEDIUM`, `LOW`).
-  - Ranked list of most complex files.
-  - Searchable and severity-filterable issue table with line numbers and refactoring suggestions.
-- **One-Click Self-Scan (`Scan Self (src/)`):** Built-in self-diagnostic mode to benchmark the analyzer against its own source code.
-- **PDF Audit Export (`Export PDF Report`):** Generates structured multi-page PDF reports powered by **OpenPDF**.
-
----
-
-## 🛠️ Tech Stack
-
-| Layer | Technology | Version |
+## Team Members
+| Name | Roll No. | Assigned Module |
 | :--- | :--- | :--- |
-| **Language & Runtime** | Java OpenJDK | 21 (LTS) |
-| **Build Tool** | Apache Maven | 3.9+ |
-| **AST Parsing** | JavaParser | 3.28.2 |
-| **Desktop UI & Charts** | JavaFX (OpenJFX) | 21.0.13 |
-| **PDF Generation** | OpenPDF | 2.2.5 |
-| **Unit Testing** | JUnit 5 (Jupiter) | 5.10.x |
+| Badal Kumar | 2025UIT3109 | Project Architecture, Maven Setup & File Scanner |
+| Member 2 | Roll No. | Static Analysis Rules Engine & Issue Scoring |
+| Member 3 | Roll No. | Health Score Calculation & Report Generation |
+| Member 4 | Roll No. | CLI / Web Interface, JUnit 5 Testing & Docs |
 
----
+## Key Features
+- Recursively scans Java source directories (`java.nio.file`) and analyzes class/method AST structures
+- Detects code smells, naming violations, high method complexity, and resource leaks
+- Computes an overall repository health score (e.g., `98/100 A`) with severity breakdowns
+- Exports structured review summaries for scanned files
+- Includes JUnit 5 unit tests verifying scanner accuracy and rule checks
 
-## 📂 Project Architecture
+## Technologies Used
+- **Java 21** (OOP, Collections, Streams, Java NIO)
+- **JavaParser & Gson** (AST parsing and JSON reporting)
+- **JUnit 5** (Unit testing)
+- **Apache Maven** (Build & dependency management)
 
-```text
-src/
-├── main/java/com/codereview/
-│   ├── analyzer/       # AstAnalyzerService & ComplexityVisitor (AST traversal)
-│   ├── engine/         # RuleEngine (threshold evaluation & severity mapping)
-│   ├── model/          # CodeIssue, FileReport, ProjectReport (metrics & scoring)
-│   ├── report/         # PdfReportExporter (OpenPDF report generation)
-│   └── ui/             # MainDashboardView & JavaFX entry point
-└── test/java/          # JUnit 5 unit tests for AST analysis & rule validation
-```
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- **JDK 21** or higher installed and configured in `JAVA_HOME`
-- **Apache Maven 3.9+**
-
-### Run the Application
+## How to Run
 1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/badalkumar7/CodeReview-Buddy.git
+   ```powershell
+   git clone [https://github.com/badalkumar7/CodeReview-Buddy.git]
    cd CodeReview-Buddy
-   ```
-
-2. **Run unit tests:**
-   ```bash
-   mvn test
-   ```
-
-3. **Launch the JavaFX desktop application:**
-   ```bash
-   mvn clean javafx:run
-   ```
-
----
-
-## 📊 Self-Scan Benchmark
-
-Running **Scan Self (`src/`)** on CodeReview Buddy's own codebase produces:
-- **Health Score:** `98 / 100 • A`
-- **Files Scanned:** `10`
-- **Average Complexity:** `1.89`
-- **Total Issues Detected:** `5` (`2 HIGH`, `1 MEDIUM`, `2 LOW`)
-
----
-
-## 👤 Author
-
-**Badal Kumar**  
-GitHub: [@badalkumar7](https://github.com/badalkumar7)
